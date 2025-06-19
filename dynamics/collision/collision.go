@@ -4,8 +4,8 @@ package collision
 import (
 	"math"
 
-	"github.com/rudransh61/Physix-go/pkg/rigidbody"
-	"github.com/rudransh61/Physix-go/pkg/vector"
+	"github.com/papr8ka/Physix-go/pkg/rigidbody"
+	"github.com/papr8ka/Physix-go/pkg/vector"
 )
 
 // CheckCollision checks if two rectangles (RigidBody instances) are colliding.

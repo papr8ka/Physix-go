@@ -7,10 +7,10 @@ import (
 
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
-	"github.com/rudransh61/Physix-go/dynamics/collision"
-	physix "github.com/rudransh61/Physix-go/dynamics/physics"
-	"github.com/rudransh61/Physix-go/pkg/rigidbody"
-	"github.com/rudransh61/Physix-go/pkg/vector"
+	"github.com/papr8ka/Physix-go/dynamics/collision"
+	physix "github.com/papr8ka/Physix-go/dynamics/physics"
+	"github.com/papr8ka/Physix-go/pkg/rigidbody"
+	"github.com/papr8ka/Physix-go/pkg/vector"
 )
 
 var (

@@ -3,18 +3,18 @@ package main
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
-	"github.com/rudransh61/Physix-go/pkg/rigidbody"
-	"github.com/rudransh61/Physix-go/pkg/vector"
-	"github.com/rudransh61/Physix-go/dynamics/physics"
+	"github.com/papr8ka/Physix-go/dynamics/physics"
+	"github.com/papr8ka/Physix-go/pkg/rigidbody"
+	"github.com/papr8ka/Physix-go/pkg/spring"
+	"github.com/papr8ka/Physix-go/pkg/vector"
 	"image/color"
-	"github.com/rudransh61/Physix-go/pkg/spring"
 )
 
 // Constants
 const (
-	Gravity = 100
+	Gravity    = 100
 	BallRadius = 20
-	Mass = 10
+	Mass       = 10
 )
 
 // Falling ball
@@ -43,7 +43,7 @@ var (
 		IsMovable: false,
 	}
 
-	springu = spring.NewSpring(ball, pivot, 100, 0.1)
+	springu  = spring.NewSpring(ball, pivot, 100, 0.1)
 	springuu = spring.NewSpring(ball2, ball, 100, 0.1)
 )
 
@@ -77,8 +77,8 @@ func draw(screen *ebiten.Image) {
 // Game struct
 type Game struct{}
 
-func (g *Game) Update() error                 { return update() }
-func (g *Game) Draw(screen *ebiten.Image)     { draw(screen) }
+func (g *Game) Update() error                                     { return update() }
+func (g *Game) Draw(screen *ebiten.Image)                         { draw(screen) }
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) { return 800, 600 }
 
 // Main function

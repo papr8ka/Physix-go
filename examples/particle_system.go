@@ -3,10 +3,10 @@ package main
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
-	"github.com/rudransh61/Physix-go/dynamics/collision"
-	"github.com/rudransh61/Physix-go/dynamics/physics"
-	"github.com/rudransh61/Physix-go/pkg/rigidbody"
-	"github.com/rudransh61/Physix-go/pkg/vector"
+	"github.com/papr8ka/Physix-go/dynamics/collision"
+	"github.com/papr8ka/Physix-go/dynamics/physics"
+	"github.com/papr8ka/Physix-go/pkg/rigidbody"
+	"github.com/papr8ka/Physix-go/pkg/vector"
 	"image/color"
 	// "math"
 	"math/rand"
@@ -15,12 +15,12 @@ import (
 
 var (
 	balls []*rigidbody.RigidBody
-	down *rigidbody.RigidBody
+	down  *rigidbody.RigidBody
 	right *rigidbody.RigidBody
-	up *rigidbody.RigidBody
-	left *rigidbody.RigidBody
+	up    *rigidbody.RigidBody
+	left  *rigidbody.RigidBody
 	dt    = 0.001
-	e = 1.0
+	e     = 1.0
 )
 
 const (
@@ -34,24 +34,24 @@ func update() error {
 	for _, ball := range balls {
 		physix.ApplyForce(ball, gravity, dt)
 		// checkwall(ball)
-		if(collision.CircleRectangleCollided(ball, down)){
+		if collision.CircleRectangleCollided(ball, down) {
 			// collision.PreventCircleRectangleOverlap(ball, down)
 			collision.BounceOnCollision(ball, down, e)
 		}
-		if(collision.CircleRectangleCollided(ball, right)){
+		if collision.CircleRectangleCollided(ball, right) {
 			// collision.PreventCircleRectangleOverlap(ball, right)
 			collision.BounceOnCollision(ball, right, e)
 		}
-		if(collision.CircleRectangleCollided(ball, up)){
+		if collision.CircleRectangleCollided(ball, up) {
 			// collision.PreventCircleRectangleOverlap(ball, up)
 			collision.BounceOnCollision(ball, up, e)
 		}
-		if(collision.CircleRectangleCollided(ball, left)){
+		if collision.CircleRectangleCollided(ball, left) {
 			// collision.PreventCircleRectangleOverlap(ball, left)
 			collision.BounceOnCollision(ball, left, e)
 		}
 	}
-	for steps:=0;steps<10;steps++{
+	for steps := 0; steps < 10; steps++ {
 		for i := 0; i < len(balls); i++ {
 			for j := i + 1; j < len(balls); j++ {
 				if collision.CircleCollided(balls[i], balls[j]) {
@@ -61,19 +61,19 @@ func update() error {
 			}
 		}
 		for _, ball := range balls {
-			if(collision.CircleRectangleCollided(ball, down)){
+			if collision.CircleRectangleCollided(ball, down) {
 				collision.PreventCircleRectangleOverlap(ball, down)
 				// collision.BounceOnCollision(ball, down, e)
 			}
-			if(collision.CircleRectangleCollided(ball, right)){
+			if collision.CircleRectangleCollided(ball, right) {
 				collision.PreventCircleRectangleOverlap(ball, right)
 				// collision.BounceOnCollision(ball, right, e)
 			}
-			if(collision.CircleRectangleCollided(ball, up)){
+			if collision.CircleRectangleCollided(ball, up) {
 				collision.PreventCircleRectangleOverlap(ball, up)
 				// collision.BounceOnCollision(ball, up, e)
 			}
-			if(collision.CircleRectangleCollided(ball, left)){
+			if collision.CircleRectangleCollided(ball, left) {
 				collision.PreventCircleRectangleOverlap(ball, left)
 				// collision.BounceOnCollision(ball, left, e)
 			}
@@ -99,9 +99,9 @@ func draw(screen *ebiten.Image) {
 
 	//Boundary
 	ebitenutil.DrawRect(screen, right.Position.X, right.Position.Y, right.Width, right.Height, color.RGBA{R: 0, G: 0xff, B: 0, A: 0}) // right
-	ebitenutil.DrawRect(screen, left.Position.X, left.Position.Y, left.Width, left.Height, color.RGBA{R: 0, G: 0xff, B: 0, A: 0})  // left
-	ebitenutil.DrawRect(screen, up.Position.X, up.Position.Y, up.Width, up.Height, color.RGBA{R: 0, G: 0xff, B: 0, A: 0})  // up
-	ebitenutil.DrawRect(screen, down.Position.X, down.Position.Y, down.Width, down.Height, color.RGBA{R: 0, G: 0xff, B: 0, A: 0})  // down
+	ebitenutil.DrawRect(screen, left.Position.X, left.Position.Y, left.Width, left.Height, color.RGBA{R: 0, G: 0xff, B: 0, A: 0})     // left
+	ebitenutil.DrawRect(screen, up.Position.X, up.Position.Y, up.Width, up.Height, color.RGBA{R: 0, G: 0xff, B: 0, A: 0})             // up
+	ebitenutil.DrawRect(screen, down.Position.X, down.Position.Y, down.Width, down.Height, color.RGBA{R: 0, G: 0xff, B: 0, A: 0})     // down
 }
 
 func main() {

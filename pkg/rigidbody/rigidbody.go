@@ -1,7 +1,7 @@
 package rigidbody
 
 import (
-	"github.com/rudransh61/Physix-go/pkg/vector"
+	"github.com/papr8ka/Physix-go/pkg/vector"
 	"math"
 )
 
@@ -9,27 +9,27 @@ var Infinite_mass float64 = 1e10
 
 // RigidBody represents a 2D rigid body.
 type RigidBody struct {
-	Position    vector.Vector
-	Velocity    vector.Vector
-	Force       vector.Vector
-	Mass        float64 
-	Shape       string
-	Width       float64
-	Height      float64
-	Radius      float64
-	IsMovable   bool
-	Torque      float64 
-    AngularVelocity float64 
-    AngularAcceleration float64 
-	Restitution  float64
+	Position            vector.Vector
+	Velocity            vector.Vector
+	Force               vector.Vector
+	Mass                float64
+	Shape               string
+	Width               float64
+	Height              float64
+	Radius              float64
+	IsMovable           bool
+	Torque              float64
+	AngularVelocity     float64
+	AngularAcceleration float64
+	Restitution         float64
 }
 
 // Rotate any body
-func (rb *RigidBody) rotateCoordinates(theta float64) (vector.Vector) {
+func (rb *RigidBody) rotateCoordinates(theta float64) vector.Vector {
 	//Get coordinates
-	x := rb.Position.X 
+	x := rb.Position.X
 	y := rb.Position.Y
-	
+
 	// Convert theta to radians
 	radians := theta * (math.Pi / 180.0)
 
@@ -43,30 +43,28 @@ func (rb *RigidBody) rotateCoordinates(theta float64) (vector.Vector) {
 	newX := rotationMatrix[0][0]*x + rotationMatrix[0][1]*y
 	newY := rotationMatrix[1][0]*x + rotationMatrix[1][1]*y
 
-	return vector.Vector{X:newX, Y:newY}
+	return vector.Vector{X: newX, Y: newY}
 }
-
 
 // UpdateRotation updates the rotation of the rigid body based on its angular velocity.
 func (rb *RigidBody) UpdateRotation(dt float64) {
-    // Update rotation based on angular velocity
-    angle := rb.AngularVelocity * dt
-    rb.Position.X = math.Cos(angle)*rb.Position.X - math.Sin(angle)*rb.Position.Y
-    rb.Position.Y = math.Sin(angle)*rb.Position.X + math.Cos(angle)*rb.Position.Y
+	// Update rotation based on angular velocity
+	angle := rb.AngularVelocity * dt
+	rb.Position.X = math.Cos(angle)*rb.Position.X - math.Sin(angle)*rb.Position.Y
+	rb.Position.Y = math.Sin(angle)*rb.Position.X + math.Cos(angle)*rb.Position.Y
 }
 
 // ApplyTorque applies a torque to the rigid body.
 func (rb *RigidBody) ApplyTorque(torque float64) {
-    rb.Torque += torque
+	rb.Torque += torque
 }
-
 
 // IMPART Impulse on a body
 func (rb *RigidBody) ApplyImpulse(impulse vector.Vector) {
-    // Calculate the change in velocity using impulse and mass
-   
-    change_velocity := impulse.Scale(1/rb.Mass);
-    rb.Velocity = rb.Velocity.Add(change_velocity)
+	// Calculate the change in velocity using impulse and mass
 
-    // rb.Rotation += rb.Torque / rb.Mass // Update rotation based on torque and mass
+	change_velocity := impulse.Scale(1 / rb.Mass)
+	rb.Velocity = rb.Velocity.Add(change_velocity)
+
+	// rb.Rotation += rb.Torque / rb.Mass // Update rotation based on torque and mass
 }

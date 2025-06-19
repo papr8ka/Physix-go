@@ -3,10 +3,10 @@ package main
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
+	"github.com/papr8ka/Physix-go/dynamics/physics"
+	"github.com/papr8ka/Physix-go/pkg/rigidbody"
+	"github.com/papr8ka/Physix-go/pkg/vector"
 	"image/color"
-	"github.com/rudransh61/Physix-go/pkg/rigidbody"
-	"github.com/rudransh61/Physix-go/pkg/vector"
-	"github.com/rudransh61/Physix-go/dynamics/physics"
 )
 
 var (
@@ -31,7 +31,7 @@ func update() error {
 }
 
 func draw(screen *ebiten.Image) {
-	// Draw the ball using the github.com/rudransh61/Physix-go engine's position
+	// Draw the ball using the github.com/papr8ka/Physix-go engine's position
 	ebitenutil.DrawRect(screen, ball.Position.X, ball.Position.Y, 20, 20, color.RGBA{R: 0xff, G: 0, B: 0, A: 0xff})
 }
 
@@ -40,12 +40,12 @@ func main() {
 	ebiten.SetWindowSize(400, 400)
 	ebiten.SetWindowTitle("Bouncing Ball")
 
-	// Initialize a rigid body with your github.com/rudransh61/Physix-go engine
+	// Initialize a rigid body with your github.com/papr8ka/Physix-go engine
 	ball = &rigidbody.RigidBody{
-		Position: vector.Vector{X: 100, Y: 200},
-		Velocity: vector.Vector{X: 50, Y: -50},
-		Mass:     1,
-		IsMovable : true,
+		Position:  vector.Vector{X: 100, Y: 200},
+		Velocity:  vector.Vector{X: 50, Y: -50},
+		Mass:      1,
+		IsMovable: true,
 	}
 
 	// Run the game loop

@@ -3,10 +3,10 @@ package main
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
+	"github.com/papr8ka/Physix-go/dynamics/physics"
+	"github.com/papr8ka/Physix-go/pkg/rigidbody"
+	"github.com/papr8ka/Physix-go/pkg/vector"
 	"image/color"
-	"github.com/rudransh61/Physix-go/dynamics/physics"
-	"github.com/rudransh61/Physix-go/pkg/rigidbody"
-	"github.com/rudransh61/Physix-go/pkg/vector"
 )
 
 var (
@@ -15,14 +15,14 @@ var (
 )
 
 func update() error {
-	// Update the github.com/rudransh61/Physix-go simulation
+	// Update the github.com/papr8ka/Physix-go simulation
 	physix.ApplyForce(ball, ball.Force, dt)
 
 	return nil
 }
 
 func draw(screen *ebiten.Image) {
-	// Draw the rectangle using the github.com/rudransh61/Physix-go engine's position
+	// Draw the rectangle using the github.com/papr8ka/Physix-go engine's position
 	ebitenutil.DrawRect(screen, ball.Position.X, ball.Position.Y, 50, 50, color.RGBA{R: 0xff, G: 0, B: 0, A: 0xff})
 }
 
@@ -31,13 +31,13 @@ func main() {
 	ebiten.SetWindowSize(400, 400)
 	ebiten.SetWindowTitle("Projectile Motion")
 
-	// Initialize a rigid body with your github.com/rudransh61/Physix-go engine
+	// Initialize a rigid body with your github.com/papr8ka/Physix-go engine
 	ball = &rigidbody.RigidBody{
-		Position: vector.Vector{X: 100, Y: 400},
-		Velocity: vector.Vector{X: 30, Y: -30},
-		Mass:     1,
-		Force : vector.Vector{X: 0, Y: 2},
-		IsMovable : true,
+		Position:  vector.Vector{X: 100, Y: 400},
+		Velocity:  vector.Vector{X: 30, Y: -30},
+		Mass:      1,
+		Force:     vector.Vector{X: 0, Y: 2},
+		IsMovable: true,
 	}
 
 	// Run the game loop

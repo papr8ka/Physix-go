@@ -3,44 +3,43 @@ package main
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
-	"github.com/rudransh61/Physix-go/dynamics/collision"
-	"github.com/rudransh61/Physix-go/dynamics/physics"
-	"github.com/rudransh61/Physix-go/pkg/rigidbody"
-	"github.com/rudransh61/Physix-go/pkg/vector"
-	"github.com/rudransh61/Physix-go/pkg/spring"
+	"github.com/papr8ka/Physix-go/dynamics/collision"
+	"github.com/papr8ka/Physix-go/dynamics/physics"
+	"github.com/papr8ka/Physix-go/pkg/rigidbody"
+	"github.com/papr8ka/Physix-go/pkg/spring"
+	"github.com/papr8ka/Physix-go/pkg/vector"
 	"image/color"
 	// "math"
 )
 
 // Global variables
 var (
-	triangle  []*rigidbody.RigidBody // Triangle vertices
-	springs   []*spring.Spring              // Springs connecting triangle vertices
-	ball      *rigidbody.RigidBody   // Single falling ball
-	dt        = 0.05                 // Time step
+	triangle []*rigidbody.RigidBody // Triangle vertices
+	springs  []*spring.Spring       // Springs connecting triangle vertices
+	ball     *rigidbody.RigidBody   // Single falling ball
+	dt       = 0.05                 // Time step
 )
 
 // Constants
 const (
-	Mass       = 20
-	Shape      = "Circle"
-	Radius     = 10
-	Stiffness  = 10.0 // Spring stiffness
-	Damping    = 2   // Spring damping
-	Gravity    = 15    // Gravity force
+	Mass      = 20
+	Shape     = "Circle"
+	Radius    = 10
+	Stiffness = 10.0 // Spring stiffness
+	Damping   = 2    // Spring damping
+	Gravity   = 15   // Gravity force
 )
-
 
 // Physics update function
 func update() error {
-	gravity := vector.Vector{X: 0, Y: -Gravity-0.5}
+	gravity := vector.Vector{X: 0, Y: -Gravity - 0.5}
 	substeps := 1
 	for i := 0; i < substeps; i++ {
 		// Apply gravity
 		for _, v := range triangle {
 			physix.ApplyForce(v, gravity, dt)
 		}
-		physix.ApplyForce(ball,   vector.Vector{X: 0, Y: Gravity+50}, dt)
+		physix.ApplyForce(ball, vector.Vector{X: 0, Y: Gravity + 50}, dt)
 
 		// Apply spring forces
 		for _, spring := range springs {
@@ -58,8 +57,6 @@ func update() error {
 
 	return nil
 }
-
-
 
 // Draw the simulation
 func draw(screen *ebiten.Image) {
@@ -109,8 +106,8 @@ func initializeSimulation() {
 // Game struct
 type Game struct{}
 
-func (g *Game) Update() error { return update() }
-func (g *Game) Draw(screen *ebiten.Image) { draw(screen) }
+func (g *Game) Update() error                                     { return update() }
+func (g *Game) Draw(screen *ebiten.Image)                         { draw(screen) }
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) { return 800, 800 }
 
 // Main function

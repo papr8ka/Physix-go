@@ -1,12 +1,10 @@
-module github.com/rudransh61/Physix-go
+module github.com/papr8ka/Physix-go
 
-go 1.22.0
-
-toolchain go1.24.1
+go 1.24
 
 require (
 	github.com/hajimehoshi/ebiten v1.12.12
-	github.com/hajimehoshi/ebiten/v2 v2.8.6
+	github.com/hajimehoshi/ebiten/v2 v2.8.8
 )
 
 require (

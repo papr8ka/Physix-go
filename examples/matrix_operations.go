@@ -5,9 +5,8 @@ import (
 	"fmt"
 	// "time"
 
-	"github.com/rudransh61/Physix-go/pkg/matrices"
-
-	// "github.com/rudransh61/Physix-go/dynamics/collision"
+	"github.com/papr8ka/Physix-go/pkg/matrices"
+	// "github.com/papr8ka/Physix-go/dynamics/collision"
 )
 
 func main() {

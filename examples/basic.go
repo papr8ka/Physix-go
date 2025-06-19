@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/rudransh61/Physix-go/dynamics/physics"
-	"github.com/rudransh61/Physix-go/pkg/rigidbody"
-	"github.com/rudransh61/Physix-go/pkg/vector"
-	// "github.com/rudransh61/Physix-go/dynamics/collision"
+	"github.com/papr8ka/Physix-go/dynamics/physics"
+	"github.com/papr8ka/Physix-go/pkg/rigidbody"
+	"github.com/papr8ka/Physix-go/pkg/vector"
+	// "github.com/papr8ka/Physix-go/dynamics/collision"
 )
 
 func main() {
@@ -29,13 +29,13 @@ func main() {
 	dt := 0.1 // Time step for simulation
 
 	for i := 0; i < 100; i++ {
-        physix.ApplyForce(ball1, vector.Vector{X: 10, Y: 0}, dt)
-        physix.ApplyForce(ball2, vector.Vector{X: 0, Y: 10}, dt)
+		physix.ApplyForce(ball1, vector.Vector{X: 10, Y: 0}, dt)
+		physix.ApplyForce(ball2, vector.Vector{X: 0, Y: 10}, dt)
 
-        fmt.Printf("Ball1: Position(%f, %f)\n", ball1.Position.X, ball1.Position.Y)
-        fmt.Printf("Ball2: Position(%f, %f)\n", ball2.Position.X, ball2.Position.Y)
-        fmt.Println("--------")
+		fmt.Printf("Ball1: Position(%f, %f)\n", ball1.Position.X, ball1.Position.Y)
+		fmt.Printf("Ball2: Position(%f, %f)\n", ball2.Position.X, ball2.Position.Y)
+		fmt.Println("--------")
 
-        time.Sleep(100 * time.Millisecond)
-    }
+		time.Sleep(100 * time.Millisecond)
+	}
 }

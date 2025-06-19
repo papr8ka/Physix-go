@@ -3,24 +3,26 @@ package main
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
-	"github.com/rudransh61/Physix-go/dynamics/collision"
-	"github.com/rudransh61/Physix-go/dynamics/physics"
-	"github.com/rudransh61/Physix-go/pkg/rigidbody"
-	"github.com/rudransh61/Physix-go/pkg/vector"
 	"github.com/hajimehoshi/ebiten/v2/inpututil"
+	"github.com/papr8ka/Physix-go/dynamics/collision"
+	"github.com/papr8ka/Physix-go/dynamics/physics"
+	"github.com/papr8ka/Physix-go/pkg/rigidbody"
+	"github.com/papr8ka/Physix-go/pkg/vector"
 	"image/color"
 	// "math"
 )
+
 // platformer
 var (
-	ball      *rigidbody.RigidBody
-	platform1 *rigidbody.RigidBody
-	platform2 *rigidbody.RigidBody
-	platform3 *rigidbody.RigidBody
-	dt        = 0.1
-	jumped    = false
+	ball       *rigidbody.RigidBody
+	platform1  *rigidbody.RigidBody
+	platform2  *rigidbody.RigidBody
+	platform3  *rigidbody.RigidBody
+	dt         = 0.1
+	jumped     = false
 	camX, camY float64
 )
+
 func update() error {
 	// Camera movement
 	if ebiten.IsKeyPressed(ebiten.KeyA) {

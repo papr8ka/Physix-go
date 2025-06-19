@@ -3,9 +3,9 @@ package main
 import (
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
-	"github.com/rudransh61/Physix-go/dynamics/physics"
-	"github.com/rudransh61/Physix-go/pkg/rigidbody"
-	"github.com/rudransh61/Physix-go/pkg/vector"
+	"github.com/papr8ka/Physix-go/dynamics/physics"
+	"github.com/papr8ka/Physix-go/pkg/rigidbody"
+	"github.com/papr8ka/Physix-go/pkg/vector"
 	"image/color"
 	"math/rand"
 	"time"
@@ -29,9 +29,9 @@ type Pipe struct {
 }
 
 var (
-	bird  = Bird{body: &rigidbody.RigidBody{Position: vector.Vector{X: 100, Y: screenHeight / 2}, Velocity: vector.Vector{X: 0, Y: 0}, Mass: 1, Radius: 10, IsMovable: true}}
-	pipes []Pipe
-	score int
+	bird     = Bird{body: &rigidbody.RigidBody{Position: vector.Vector{X: 100, Y: screenHeight / 2}, Velocity: vector.Vector{X: 0, Y: 0}, Mass: 1, Radius: 10, IsMovable: true}}
+	pipes    []Pipe
+	score    int
 	gameOver bool
 )
 
@@ -50,7 +50,7 @@ func update() error {
 		return nil
 	}
 
-	physix.ApplyForce(bird.body, vector.Vector{X: 0, Y: bird.body.Mass*9.8}, 0.1)
+	physix.ApplyForce(bird.body, vector.Vector{X: 0, Y: bird.body.Mass * 9.8}, 0.1)
 	// bird.body.Position = bird.body.Position.Add(bird.body.Velocity)
 
 	if ebiten.IsKeyPressed(ebiten.KeySpace) {
@@ -78,7 +78,6 @@ func update() error {
 			}
 		}
 	}
-	
 
 	return nil
 }
@@ -94,8 +93,8 @@ func draw(screen *ebiten.Image) {
 
 type Game struct{}
 
-func (g *Game) Update() error { return update() }
-func (g *Game) Draw(screen *ebiten.Image) { draw(screen) }
+func (g *Game) Update() error                                     { return update() }
+func (g *Game) Draw(screen *ebiten.Image)                         { draw(screen) }
 func (g *Game) Layout(outsideWidth, outsideHeight int) (int, int) { return screenWidth, screenHeight }
 
 func main() {
